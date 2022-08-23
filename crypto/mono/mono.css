@@ -1,0 +1,61 @@
+html {
+	background: black;
+	color: lightgreen;
+	}
+
+#header, #footer{
+	background: black;
+	border-color: lightgreen;
+	color: lightgreen;
+}
+	
+	
+#textInput textarea{
+	height: 40px;
+	background: grey;
+	color: white;
+	display: inline-block;
+	position: relative;
+	left: 10px;
+	right: 10px;
+	width: 400px;
+}
+
+#textInput textarea:focus {
+	height: 80px;
+	
+}
+
+#text {
+	background: black;
+}
+	
+.letter { 
+	display: inline-block;
+	height: 60px;
+	font-family: mono;
+}
+
+.letter div{
+	height: 30px;
+	font-size: 25px;
+	}
+	
+.markedLetter {	/* letter picked by clicking on them */
+	background-color: grey;
+	}
+
+
+.secretLetter {
+	color: yellow;
+}
+	
+.clearLetter {
+	color: lightgreen;
+}
+
+.letterInput {
+	width: 15px;
+	height: 30px;
+	background: grey;
+	}
