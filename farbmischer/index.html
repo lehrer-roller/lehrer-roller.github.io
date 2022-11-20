@@ -6,10 +6,11 @@
     #controls {width: 400px; margin: auto}
     .control_color {display: inline; margin: auto;}
     #stage { margin: auto; border: 1px solid black; background: grey;}
-    .control_color { height: 40px; font-size: 20px; font-weight: " bold";}
-    #control_red { color: red;}
-    #control_blue { color: blue; background: blue;}
-    #control_green { color: green;}
+    .control_color { width: 360px; height: 40px; font-size: 20px; font-weight: " bold";}
+    #col_red { background: rgb(255,0,0); }
+    #col_blue { background: rgb(0,0,255); }
+    #col_green { background: rgb(0,255,0); }
+    .col_box { width: 30px; height: 30px; display: inline-block;}
     
   </style>
 </head>
@@ -17,11 +18,9 @@
 	<div id="main">
 		<div id="controls">
 			<form>
-				Rot: <input id="control_red"   class="control_color" type="range" max=100 min=0 step=10 value=50 onchange="update_color()"><br>
-				Grün: <input id="control_blue"  class="control_color" type="range" max=100 min=0 step=10 value=50 onchange="update_color()"><br>
-				Blau: <input id="control_green" class="control_color" type="range" max=100 min=0 step=10 value=50 onchange="update_color()">
-				
-				
+				<div id="col_red" class="col_box"></div> <input id="control_red"   class="control_color" type="range" max=100 min=0 step=10 value=50 oninput="update_color()"><br>
+				<div id="col_green" class="col_box"></div> <input id="control_green" class="control_color" type="range" max=100 min=0 step=10 value=50 oninput="update_color()">
+				<div id="col_blue" class="col_box"></div> <input id="control_blue"  class="control_color" type="range" max=100 min=0 step=10 value=50 oninput="update_color()"><br>
 			</form>
 		</div>
 	  <canvas id="stage" width="400" height="400"></canvas>
