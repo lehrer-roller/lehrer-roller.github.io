@@ -2,18 +2,42 @@
 <html>
 <head>
   <style>
-    
-    #stage { border: 1px solid black; background: grey;}
+    #controls, canvas { display: block; }
+    #controls {width: 400px; margin: auto}
+    .control_color {display: inline; margin: auto;}
+    #stage { margin: auto; border: 1px solid black; background: grey;}
+    .control_color { height: 40px; font-size: 20px; font-weight: " bold";}
+    #control_red { color: red;}
+    #control_blue { color: blue; background: blue;}
+    #control_green { color: green;}
     
   </style>
 </head>
 <body>
-  <canvas id="stage" width="400" height="400"></canvas>
+	<div id="main">
+		<div id="controls">
+			<form>
+				Rot: <input id="control_red"   class="control_color" type="range" max=100 min=0 step=10 value=50 onchange="update_color()"><br>
+				Grün: <input id="control_blue"  class="control_color" type="range" max=100 min=0 step=10 value=50 onchange="update_color()"><br>
+				Blau: <input id="control_green" class="control_color" type="range" max=100 min=0 step=10 value=50 onchange="update_color()">
+				
+				
+			</form>
+		</div>
+	  <canvas id="stage" width="400" height="400"></canvas>
+	 </div>
   <script>
 
     var stage = document.querySelector('#stage');
     var ctx = stage.getContext('2d');
-    
+    function update_color() {
+	draw_light(
+			document.querySelector('#control_red').value,
+			document.querySelector('#control_green').value,
+			document.querySelector('#control_blue').value,
+		);
+		
+	}
 	function draw_light(val_red, val_green, val_blue) {
 		// Farbwerte sind Prozentangaben
 		val_red *= 2.55;
@@ -21,7 +45,7 @@
 		val_blue *= 2.55;
 		
 		ctx.strokeStyle = " solid 10px  black";
-		
+		ctx.clearRect(0, 0, stage.width, stage.height);
 		ctx.fillStyle = "rgb("+ val_red + ",0,0)";
 		ctx.beginPath();
 		ctx.moveTo(240, 0);
@@ -81,7 +105,7 @@
 		ctx.stroke();
 		ctx.fill();
 	}
-	draw_light(100,100,100);
+	update_color();
   </script>
 </body>
 </html>
