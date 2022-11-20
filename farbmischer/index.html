@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+  <style>
+    
+    #stage { border: 1px solid black; background: grey;}
+    
+  </style>
+</head>
+<body>
+  <canvas id="stage" width="400" height="400"></canvas>
+  <script>
+
+    var stage = document.querySelector('#stage');
+    var ctx = stage.getContext('2d');
+    
+	function draw_light(val_red, val_green, val_blue) {
+		// Farbwerte sind Prozentangaben
+		val_red *= 2.55;
+		val_green *= 2.55;
+		val_blue *= 2.55;
+		
+		ctx.strokeStyle = " solid 10px  black";
+		
+		ctx.fillStyle = "rgb("+ val_red + ",0,0)";
+		ctx.beginPath();
+		ctx.moveTo(240, 0);
+		ctx.lineTo(280, 160);
+		ctx.lineTo(120, 160);
+		ctx.lineTo(160, 0);
+		ctx.stroke();
+		ctx.fill();
+		
+		ctx.fillStyle = "rgb(0,"+ val_green + ",0)";;
+		ctx.beginPath();
+		ctx.moveTo(400, 300);
+		ctx.lineTo(280, 160);
+		ctx.lineTo(200, 300);
+		ctx.lineTo(400, 380);
+		ctx.stroke();
+		ctx.fill();
+
+		ctx.fillStyle = "rgb(0,0,"+ val_blue+ ")";
+		ctx.beginPath();
+		ctx.moveTo(0, 300);
+		ctx.lineTo(120, 160);
+		ctx.lineTo(200, 300);
+		ctx.lineTo(0, 380);
+		ctx.stroke();
+		ctx.fill();
+
+		ctx.fillStyle = "rgb("+ val_red + ","+ val_green + ",0)";
+		ctx.beginPath();
+		ctx.arc(200,160, 80, 0, Math.PI/3);
+		ctx.lineTo(200,160);
+		ctx.arc(240,230, 80, 4*Math.PI/3, 5*Math.PI/3);
+		ctx.stroke();
+		ctx.fill();
+
+		ctx.fillStyle = "rgb(0, "+ val_green + ","+ val_blue +")";
+		ctx.beginPath();
+		ctx.arc(160,230, 80, 0, Math.PI/3);
+		ctx.arc(240,230, 80, 2*Math.PI/3, 3*Math.PI/3);
+		ctx.lineTo(160,230);
+		ctx.stroke();
+		ctx.fill();
+
+		ctx.fillStyle = "rgb("+ val_red + ",0,"+ val_blue + ")";
+		ctx.beginPath();
+		ctx.arc(200,160, 80, 2*Math.PI/3, 3*Math.PI/3);
+		ctx.arc(160,230, 80, 4*Math.PI/3, 5*Math.PI/3);
+		ctx.lineTo(200,160);
+		ctx.stroke();
+		ctx.fill();
+		
+		ctx.fillStyle = "rgb("+ val_red + ", "+ val_green + ","+ val_blue +")";
+		ctx.beginPath();
+		ctx.arc(200,160, 80, 1*Math.PI/3, 2*Math.PI/3);
+		ctx.arc(240,230, 80, 3*Math.PI/3, 4*Math.PI/3);
+		ctx.arc(160,230, 80, 5*Math.PI/3, 6*Math.PI/3); 
+		ctx.stroke();
+		ctx.fill();
+	}
+	draw_light(100,100,100);
+  </script>
+</body>
+</html>
