@@ -4,6 +4,7 @@
   <style>
     #controls, canvas { display: block; }
     #controls {width: 400px; margin: auto}
+    #main { background: grey; }
     .control_color {display: inline; margin: auto;}
     #stage { margin: auto; border: 1px solid black; background: grey;}
     .control_color { width: 360px; height: 40px; font-size: 20px; font-weight: " bold";}
@@ -11,41 +12,50 @@
     #col_blue { background: rgb(0,0,255); }
     #col_green { background: rgb(0,255,0); }
     .col_box { width: 30px; height: 30px; display: inline-block;}
-    
+    #col_wish {width: 50px; height: 50px; display: inline-block; border-style: solid; border-width: 1px; border-color: black}
+
   </style>
 </head>
 <body>
 	<div id="main">
-		<div id="controls">
+		 <canvas id="stage" width="400" height="400"></canvas>
+		 Zielfarbe: <div id="col_wish">
+	</div> 
+				
+		 <div id="controls">
 			<form>
-				<div id="col_red" class="col_box"></div> <input id="control_red"   class="control_color" type="range" max=100 min=0 step=10 value=50 oninput="update_color()"><br>
-				<div id="col_green" class="col_box"></div> <input id="control_green" class="control_color" type="range" max=100 min=0 step=10 value=50 oninput="update_color()">
-				<div id="col_blue" class="col_box"></div> <input id="control_blue"  class="control_color" type="range" max=100 min=0 step=10 value=50 oninput="update_color()"><br>
+				<div id="col_red" class="col_box"></div> 
+				<input id="control_red"   class="control_color" type="range" max=10 min=0 step=1 value=5 oninput="update_color()" onchange="diff_color()"><br>
+				<div id="col_green" class="col_box"></div> 
+				<input id="control_green" class="control_color" type="range" max=10 min=0 step=1 value=5 oninput="update_color()" onchange="diff_color()"><br>
+				<div id="col_blue" class="col_box"></div> 
+				<input id="control_blue"  class="control_color" type="range" max=10 min=0 step=1 value=5 oninput="update_color()" onchange="diff_color()"><br>
 			</form>
 		</div>
-	  <canvas id="stage" width="400" height="400"></canvas>
+	 
 	 </div>
   <script>
 
     var stage = document.querySelector('#stage');
     var ctx = stage.getContext('2d');
+    var wish_color = null;
+    var steps = 0;
+    var cols = 0;
+    var level = 1;
+    
     function update_color() {
-	draw_light(
-			document.querySelector('#control_red').value,
-			document.querySelector('#control_green').value,
-			document.querySelector('#control_blue').value,
-		);
-		
-	}
-	function draw_light(val_red, val_green, val_blue) {
 		// Farbwerte sind Prozentangaben
-		val_red *= 2.55;
-		val_green *= 2.55;
-		val_blue *= 2.55;
+		document.querySelector('#control_red').value,
+		document.querySelector('#control_green').value,
+		document.querySelector('#control_blue').value,
 		
+		val_red =   document.querySelector('#control_red').value;
+		val_green = document.querySelector('#control_green').value;
+		val_blue =  document.querySelector('#control_blue').value;
+		console.log("eingestellt: " + val_red + " " + val_green + " " + val_blue);
 		ctx.strokeStyle = " solid 10px  black";
 		ctx.clearRect(0, 0, stage.width, stage.height);
-		ctx.fillStyle = "rgb("+ val_red + ",0,0)";
+		ctx.fillStyle = rgb_from_discrete({r: val_red, g: 0, b: 0});
 		ctx.beginPath();
 		ctx.moveTo(240, 0);
 		ctx.lineTo(280, 160);
@@ -54,7 +64,7 @@
 		ctx.stroke();
 		ctx.fill();
 		
-		ctx.fillStyle = "rgb(0,"+ val_green + ",0)";;
+		ctx.fillStyle = rgb_from_discrete({r: 0, g: val_green, b: 0});
 		ctx.beginPath();
 		ctx.moveTo(400, 300);
 		ctx.lineTo(280, 160);
@@ -63,7 +73,7 @@
 		ctx.stroke();
 		ctx.fill();
 
-		ctx.fillStyle = "rgb(0,0,"+ val_blue+ ")";
+		ctx.fillStyle = rgb_from_discrete({r: 0, g: 0, b: val_blue});
 		ctx.beginPath();
 		ctx.moveTo(0, 300);
 		ctx.lineTo(120, 160);
@@ -71,8 +81,8 @@
 		ctx.lineTo(0, 380);
 		ctx.stroke();
 		ctx.fill();
-
-		ctx.fillStyle = "rgb("+ val_red + ","+ val_green + ",0)";
+/*
+		ctx.fillStyle = rgb_from_discrete({r: val_red, g: val_green, b: 0});
 		ctx.beginPath();
 		ctx.arc(200,160, 80, 0, Math.PI/3);
 		ctx.lineTo(200,160);
@@ -80,7 +90,7 @@
 		ctx.stroke();
 		ctx.fill();
 
-		ctx.fillStyle = "rgb(0, "+ val_green + ","+ val_blue +")";
+		ctx.fillStyle = rgb_from_discrete({r: 0, g: val_green, b: val_blue});
 		ctx.beginPath();
 		ctx.arc(160,230, 80, 0, Math.PI/3);
 		ctx.arc(240,230, 80, 2*Math.PI/3, 3*Math.PI/3);
@@ -88,7 +98,7 @@
 		ctx.stroke();
 		ctx.fill();
 
-		ctx.fillStyle = "rgb("+ val_red + ",0,"+ val_blue + ")";
+		ctx.fillStyle = rgb_from_discrete({r: val_red, g: 0, b: val_blue});
 		ctx.beginPath();
 		ctx.arc(200,160, 80, 2*Math.PI/3, 3*Math.PI/3);
 		ctx.arc(160,230, 80, 4*Math.PI/3, 5*Math.PI/3);
@@ -96,7 +106,8 @@
 		ctx.stroke();
 		ctx.fill();
 		
-		ctx.fillStyle = "rgb("+ val_red + ", "+ val_green + ","+ val_blue +")";
+
+*/		ctx.fillStyle = rgb_from_discrete({r: val_red, g: val_green, b: val_blue});
 		ctx.beginPath();
 		ctx.arc(200,160, 80, 1*Math.PI/3, 2*Math.PI/3);
 		ctx.arc(240,230, 80, 3*Math.PI/3, 4*Math.PI/3);
@@ -104,6 +115,66 @@
 		ctx.stroke();
 		ctx.fill();
 	}
+	
+	function new_color(level) {
+		switch (level) {
+			case 1: 
+				steps = 2;
+				cols = 1;
+				break;
+			case 2: 
+				steps = 2;
+				cols = 2;
+				break;
+			case 3: 
+				steps = 2;
+				cols = 2;
+				break;
+			case 5: 
+				steps = 2;
+				cols =  3;
+				break;
+			default:
+				steps = 10;
+				cols = 3;
+				break;
+		}
+		
+		var r = Math.floor(Math.random() * steps);
+		var g = Math.floor(Math.random() * steps);
+		var b = Math.floor(Math.random() * steps);
+		
+		document.querySelector('#control_red').setAttribute("max", steps);
+		document.querySelector('#control_green').setAttribute("max", steps);
+		document.querySelector('#control_blue').setAttribute("max", steps);
+		
+		document.querySelector('#control_red').setAttribute("value", Math.floor(steps/2));
+		document.querySelector('#control_green').setAttribute("value", Math.floor(steps/2));
+		document.querySelector('#control_blue').setAttribute("value", Math.floor(steps/2));
+				
+		document.querySelector('#col_wish').style.backgroundColor = rgb_from_discrete({r,g,b});
+		return {r,g,b};	
+	}
+	
+	function rgb_from_discrete(color) {
+		return  "rgb(" + color.r*255/steps + ", " + color.g*255/steps + ", " + color.b*255/steps + ")"
+	}
+	
+	function diff_color() {
+		var dr = Math.abs(wish_color.r - document.querySelector('#control_red').value);
+		var dg = Math.abs(wish_color.g - document.querySelector('#control_green').value);
+		var db = Math.abs(wish_color.b - document.querySelector('#control_blue').value);
+		console.log({dr, dg, db});
+		if (dr + dg + db == 0) {
+			window.alert("Du hast es geschafft!");
+			level += 1;
+			wish_color = new_color(level);
+			console.log("Wunsch:" , wish_color);
+		}
+	}
+	
+	wish_color = new_color(level);
+	
 	update_color();
   </script>
 </body>
