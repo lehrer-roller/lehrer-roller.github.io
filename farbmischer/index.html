@@ -12,14 +12,13 @@
     #col_blue { background: rgb(0,0,255); }
     #col_green { background: rgb(0,255,0); }
     .col_box { width: 30px; height: 30px; display: inline-block;}
-    #col_wish {width: 50px; height: 50px; display: inline-block; border-style: solid; border-width: 1px; border-color: black}
-
+    
   </style>
 </head>
 <body>
 	<div id="main">
 		 <canvas id="stage" width="400" height="400"></canvas>
-		 Zielfarbe: <div id="col_wish">
+		
 	</div> 
 				
 		 <div id="controls">
@@ -81,7 +80,9 @@
 		ctx.lineTo(0, 380);
 		ctx.stroke();
 		ctx.fill();
-/*
+
+
+		/*
 		ctx.fillStyle = rgb_from_discrete({r: val_red, g: val_green, b: 0});
 		ctx.beginPath();
 		ctx.arc(200,160, 80, 0, Math.PI/3);
@@ -105,13 +106,28 @@
 		ctx.lineTo(200,160);
 		ctx.stroke();
 		ctx.fill();
-		
 
-*/		ctx.fillStyle = rgb_from_discrete({r: val_red, g: val_green, b: val_blue});
+
+		ctx.fillStyle = rgb_from_discrete({r: val_red, g: val_green, b: val_blue});
 		ctx.beginPath();
 		ctx.arc(200,160, 80, 1*Math.PI/3, 2*Math.PI/3);
 		ctx.arc(240,230, 80, 3*Math.PI/3, 4*Math.PI/3);
 		ctx.arc(160,230, 80, 5*Math.PI/3, 6*Math.PI/3); 
+		ctx.stroke();
+		ctx.fill();
+*/
+		ctx.fillStyle = rgb_from_discrete({r: val_red, g: val_green, b: val_blue});
+		ctx.beginPath();
+		ctx.arc(120,160, 160, 0*Math.PI/3, 1*Math.PI/3);
+		ctx.arc(280,160, 160, 2*Math.PI/3, 3*Math.PI/3);
+		ctx.arc(200,300, 160, 4*Math.PI/3, 5*Math.PI/3); 
+		ctx.stroke();
+		ctx.fill();
+
+		ctx.fillStyle = rgb_from_discrete(wish_color);
+		ctx.beginPath();
+		ctx.arc(200,207, 30, 0*Math.PI/3, 6*Math.PI/3); 
+		
 		ctx.stroke();
 		ctx.fill();
 	}
@@ -130,12 +146,12 @@
 				steps = 2;
 				cols = 2;
 				break;
-			case 5: 
+			case 4: 
 				steps = 2;
 				cols =  3;
 				break;
 			default:
-				steps = 10;
+				steps = 3;
 				cols = 3;
 				break;
 		}
@@ -152,7 +168,6 @@
 		document.querySelector('#control_green').setAttribute("value", Math.floor(steps/2));
 		document.querySelector('#control_blue').setAttribute("value", Math.floor(steps/2));
 				
-		document.querySelector('#col_wish').style.backgroundColor = rgb_from_discrete({r,g,b});
 		return {r,g,b};	
 	}
 	
@@ -169,6 +184,7 @@
 			window.alert("Du hast es geschafft!");
 			level += 1;
 			wish_color = new_color(level);
+			update_color();
 			console.log("Wunsch:" , wish_color);
 		}
 	}
