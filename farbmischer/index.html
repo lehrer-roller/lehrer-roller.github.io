@@ -3,11 +3,10 @@
 <head>
   <style>
 	body { width: 600px }
-	#float_welcome {background: #07f; color: white; font-size: 20px; text-align: center;
+	#screen {position: absolute; width: 100% ; height: 100%}
+	#float_welcome, #float_message {background: #07f; color: white; font-size: 20px; text-align: center;
 		position: absolute; left: 50px; top: 50px; width: 500px; padding: 5px; border-radius: 5px;}
-	#float_message {background: #07f; color: white; font-size: 20px;  text-align: center;
-		position: absolute; left: 50px; top: 50px; width: 500px; padding: 5px; border-radius: 5px;}
-    #controls, canvas { display: block; }
+	#controls, canvas { display: block; }
     #controls {width: 400px; margin: auto}
     .control_color {display: inline; margin: auto;}
     #stage { width: 600px; height: 600px; margin: auto; border: 1px solid black; background-image: url("bg.jpg");}
@@ -15,21 +14,26 @@
     #col_red { background: rgb(255,0,0); }
     #col_blue { background: rgb(0,0,255); }
     #col_green { background: rgb(0,255,0); }
-    .col_box { width: 30px; height: 30px; display: inline-block;}
+    .col_box { width: 30px; height: 30px; display: inline-block; }
+	#status {background: #07f; color: white; padding: 5px; border-radius: 5px;}
+	#level_bereich, #beschreibung {width: 250px; display: inline-block; font-size: 20px}
+	
+	
+	}
     
   </style>
 </head>
 <body>
-	<div id="float_welcome" onclick="hide_welcome()">
+	<div id="float_welcome" >
 		Tanja, die Bühnentechnikerin, ist leider krank im Bett, du musst ihren Job übernehmen! An drei Reglern kannst du die roten, grünen und blauen Scheinwerfer einzeln ansteuern. 
 		In der Mitte siehst du die gemischte Farbe, der kleine Kreis ganz in der Mitte zeigt die gewünschte Mischfarbe an. Es fängt ganz leicht an... 
 		<br>
 		Tippen um loszulegen!
 	</div>
-	<div id="float_message" onclick="hide_message()" hidden>
-		Super! Du hast es geschafft!
-		<br>
-		Tippen für den nächsten Level!
+	<div id="float_message" hidden>
+		
+	</div>
+	<div id="screen" onclick="hide_screen()">
 	</div>
 	
 	<div id="main">
@@ -47,8 +51,8 @@
 			<input id="control_blue"  class="control_color" type="range" max=10 min=0 step=1 value=5 oninput="update_color()" onchange="diff_color()"><br>
 		</form>
 	</div>
-	<div id="#status">
-		
+	<div id="status">
+		<div id="level_bereich">Level: <span id="level"></span></div><div id="beschreibung"></div>
 	</div>
 	 
   <script>
@@ -57,9 +61,32 @@
 		document.querySelector('#float_welcome').style.display = "none";
 	}
 	
+	function hide_screen() {
+		if (document.querySelector('#float_welcome').checkVisibility()){
+			hide_welcome();
+		} else if (document.querySelector('#float_message').checkVisibility()){
+			hide_message();
+		}
+		document.querySelector('#screen').style.display = "none";
+	}
+	
+	function show_screen() {
+		document.querySelector('#screen').style.display = "block";
+	}
+	
 	function hide_message() {
 		document.querySelector('#float_message').style.display = "none";
+					level += 1;
+			wish_color = new_color(level);
+			update_color();
 	}
+	
+	function show_message(text) {
+		document.querySelector('#float_message').innerHTML = text;
+		document.querySelector('#float_message').style.display = "block";
+		show_screen();
+	}
+		
 	
     var stage = document.querySelector('#stage');
     var ctx = stage.getContext('2d');
@@ -68,16 +95,18 @@
     var cols = 0;
     var level = 1;
     
+    function update_level_beschreibung() {
+		document.querySelector('#level').innerHTML = level;
+		beschreibung = "Du musst " + cols + (cols == 1 ? " Farbe" : " Farben") + " mischen.";
+		document.querySelector('#beschreibung').innerHTML = beschreibung;
+	}
+    
     function update_color() {
 		// Farbwerte sind gestuft 0..steps
-		document.querySelector('#control_red').value,
-		document.querySelector('#control_green').value,
-		document.querySelector('#control_blue').value,
-		
 		val_red =   document.querySelector('#control_red').value;
 		val_green = document.querySelector('#control_green').value;
 		val_blue =  document.querySelector('#control_blue').value;
-		//console.log("eingestellt: " + val_red + " " + val_green + " " + val_blue);
+		
 		ctx.strokeStyle = " solid 10px  black";
 		ctx.clearRect(0, 0, stage.width, stage.height);
 		ctx.fillStyle = rgb_from_discrete({r: val_red, g: 0, b: 0});
@@ -159,41 +188,54 @@
 	}
 	
 	function new_color(level) {
-		switch (level) {
-			case 1: 
-				steps = 2;
-				cols = 1;
-				break;
-			case 2: 
-				steps = 2;
-				cols = 2;
-				break;
-			case 3: 
-				steps = 2;
-				cols = 2;
-				break;
-			case 4: 
-				steps = 2;
-				cols =  3;
-				break;
-			default:
-				steps = 3;
-				cols = 3;
-				break;
+		steps = 3; // default for most cases
+		if (level == 1) {
+			cols = 1;
+			var r = Math.ceil(Math.random() * steps);
+			var g = b = 0;
+		} else if (level == 2) {
+			cols = 1;
+			var b = Math.ceil(Math.random() * steps);
+			var r = g = 0;
+		} else if (level == 3) {
+			cols = 1;
+			var g = Math.ceil(Math.random() * steps);
+			var r = b = 0;
+		} else if (level == 4) {
+			cols = 2;
+			var g = Math.ceil(Math.random() * steps);
+			var r = Math.ceil(Math.random() * steps);
+			var b = 0;
+		} else if (level == 5) {
+			cols = 2;
+			var g = Math.ceil(Math.random() * steps);
+			var b = Math.ceil(Math.random() * steps);
+			var r = 0;
+		} else if (level == 6) {
+			cols = 2;
+			var b = Math.ceil(Math.random() * steps);
+			var r = Math.ceil(Math.random() * steps);
+			var g = 0;
+		} else {
+			cols = 3;
+			var g = Math.ceil(Math.random() * steps);
+			var b = Math.ceil(Math.random() * steps);
+			var r = Math.ceil(Math.random() * steps);
+			if (level > 10) {
+				steps = Math.floor((level + 1) / 3 ); // alle drei Level um eins ansteigen, ab Level 11
+			}
 		}
 		
-		var r = Math.floor(Math.random() * steps);
-		var g = Math.floor(Math.random() * steps);
-		var b = Math.floor(Math.random() * steps);
 		
 		document.querySelector('#control_red').setAttribute("max", steps);
 		document.querySelector('#control_green').setAttribute("max", steps);
 		document.querySelector('#control_blue').setAttribute("max", steps);
 		
-		document.querySelector('#control_red').setAttribute("value", Math.floor(steps/2));
-		document.querySelector('#control_green').setAttribute("value", Math.floor(steps/2));
-		document.querySelector('#control_blue').setAttribute("value", Math.floor(steps/2));
-				
+		document.querySelector('#control_red').value = 0;
+		document.querySelector('#control_green').value = 0;
+		document.querySelector('#control_blue').value = 0;
+		
+		update_level_beschreibung();
 		return {r,g,b};	
 	}
 	
@@ -207,12 +249,7 @@
 		var db = Math.abs(wish_color.b - document.querySelector('#control_blue').value);
 		//console.log({dr, dg, db});
 		if (dr + dg + db == 0) {
-			//window.alert("Du hast es geschafft!");
-			document.querySelector('#float_message').style.display = "block";
-			level += 1;
-			wish_color = new_color(level);
-			update_color();
-		//	console.log("Wunsch:" , wish_color);
+			show_message("Super! Du hast es geschafft!<br>Tippen für den nächsten Level!");
 		}
 	}
 	
