@@ -2,11 +2,15 @@
 <html>
 <head>
   <style>
-	#float_welcome {background: blue; color: white; position: absolute; left: 50px; top: 50px; right: 50px; padding: 5px; border-radius: 5px;}
+	body { width: 600px }
+	#float_welcome {background: #07f; color: white; font-size: 20px; text-align: center;
+		position: absolute; left: 50px; top: 50px; width: 500px; padding: 5px; border-radius: 5px;}
+	#float_message {background: #07f; color: white; font-size: 20px;  text-align: center;
+		position: absolute; left: 50px; top: 50px; width: 500px; padding: 5px; border-radius: 5px;}
     #controls, canvas { display: block; }
     #controls {width: 400px; margin: auto}
     .control_color {display: inline; margin: auto;}
-    #stage { margin: auto; border: 1px solid black; background-image: url("bg.jpg");}
+    #stage { width: 600px; height: 600px; margin: auto; border: 1px solid black; background-image: url("bg.jpg");}
     .control_color { width: 360px; height: 40px; font-size: 20px; font-weight: " bold";}
     #col_red { background: rgb(255,0,0); }
     #col_blue { background: rgb(0,0,255); }
@@ -22,6 +26,12 @@
 		<br>
 		Tippen um loszulegen!
 	</div>
+	<div id="float_message" onclick="hide_message()" hidden>
+		Super! Du hast es geschafft!
+		<br>
+		Tippen für den nächsten Level!
+	</div>
+	
 	<div id="main">
 		<canvas id="stage" width="400" height="400"></canvas>
 		
@@ -45,9 +55,12 @@
 
 	function hide_welcome() {
 		document.querySelector('#float_welcome').style.display = "none";
-		
 	}
-
+	
+	function hide_message() {
+		document.querySelector('#float_message').style.display = "none";
+	}
+	
     var stage = document.querySelector('#stage');
     var ctx = stage.getContext('2d');
     var wish_color = null;
@@ -192,9 +205,10 @@
 		var dr = Math.abs(wish_color.r - document.querySelector('#control_red').value);
 		var dg = Math.abs(wish_color.g - document.querySelector('#control_green').value);
 		var db = Math.abs(wish_color.b - document.querySelector('#control_blue').value);
-		console.log({dr, dg, db});
+		//console.log({dr, dg, db});
 		if (dr + dg + db == 0) {
-			window.alert("Du hast es geschafft!");
+			//window.alert("Du hast es geschafft!");
+			document.querySelector('#float_message').style.display = "block";
 			level += 1;
 			wish_color = new_color(level);
 			update_color();
