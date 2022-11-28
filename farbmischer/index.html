@@ -2,11 +2,11 @@
 <html>
 <head>
   <style>
+	#float_welcome {background: blue; color: white; position: absolute; left: 50px; top: 50px; right: 50px; padding: 5px; border-radius: 5px;}
     #controls, canvas { display: block; }
     #controls {width: 400px; margin: auto}
-    #main { background: grey; }
     .control_color {display: inline; margin: auto;}
-    #stage { margin: auto; border: 1px solid black; background: grey;}
+    #stage { margin: auto; border: 1px solid black; background-image: url("bg.jpg");}
     .control_color { width: 360px; height: 40px; font-size: 20px; font-weight: " bold";}
     #col_red { background: rgb(255,0,0); }
     #col_blue { background: rgb(0,0,255); }
@@ -16,24 +16,37 @@
   </style>
 </head>
 <body>
+	<div id="float_welcome" onclick="hide_welcome()">
+		Tanja, die Bühnentechnikerin, ist leider krank im Bett, du musst ihren Job übernehmen! An drei Reglern kannst du die roten, grünen und blauen Scheinwerfer einzeln ansteuern. 
+		In der Mitte siehst du die gemischte Farbe, der kleine Kreis ganz in der Mitte zeigt die gewünschte Mischfarbe an. Es fängt ganz leicht an... 
+		<br>
+		Tippen um loszulegen!
+	</div>
 	<div id="main">
-		 <canvas id="stage" width="400" height="400"></canvas>
+		<canvas id="stage" width="400" height="400"></canvas>
 		
 	</div> 
 				
-		 <div id="controls">
-			<form>
-				<div id="col_red" class="col_box"></div> 
-				<input id="control_red"   class="control_color" type="range" max=10 min=0 step=1 value=5 oninput="update_color()" onchange="diff_color()"><br>
-				<div id="col_green" class="col_box"></div> 
-				<input id="control_green" class="control_color" type="range" max=10 min=0 step=1 value=5 oninput="update_color()" onchange="diff_color()"><br>
-				<div id="col_blue" class="col_box"></div> 
-				<input id="control_blue"  class="control_color" type="range" max=10 min=0 step=1 value=5 oninput="update_color()" onchange="diff_color()"><br>
-			</form>
-		</div>
+	 <div id="controls">
+		<form>
+			<div id="col_red" class="col_box"></div> 
+			<input id="control_red"   class="control_color" type="range" max=10 min=0 step=1 value=5 oninput="update_color()" onchange="diff_color()"><br>
+			<div id="col_green" class="col_box"></div> 
+			<input id="control_green" class="control_color" type="range" max=10 min=0 step=1 value=5 oninput="update_color()" onchange="diff_color()"><br>
+			<div id="col_blue" class="col_box"></div> 
+			<input id="control_blue"  class="control_color" type="range" max=10 min=0 step=1 value=5 oninput="update_color()" onchange="diff_color()"><br>
+		</form>
+	</div>
+	<div id="#status">
+		
+	</div>
 	 
-	 </div>
   <script>
+
+	function hide_welcome() {
+		document.querySelector('#float_welcome').style.display = "none";
+		
+	}
 
     var stage = document.querySelector('#stage');
     var ctx = stage.getContext('2d');
@@ -43,7 +56,7 @@
     var level = 1;
     
     function update_color() {
-		// Farbwerte sind Prozentangaben
+		// Farbwerte sind gestuft 0..steps
 		document.querySelector('#control_red').value,
 		document.querySelector('#control_green').value,
 		document.querySelector('#control_blue').value,
@@ -51,7 +64,7 @@
 		val_red =   document.querySelector('#control_red').value;
 		val_green = document.querySelector('#control_green').value;
 		val_blue =  document.querySelector('#control_blue').value;
-		console.log("eingestellt: " + val_red + " " + val_green + " " + val_blue);
+		//console.log("eingestellt: " + val_red + " " + val_green + " " + val_blue);
 		ctx.strokeStyle = " solid 10px  black";
 		ctx.clearRect(0, 0, stage.width, stage.height);
 		ctx.fillStyle = rgb_from_discrete({r: val_red, g: 0, b: 0});
@@ -185,7 +198,7 @@
 			level += 1;
 			wish_color = new_color(level);
 			update_color();
-			console.log("Wunsch:" , wish_color);
+		//	console.log("Wunsch:" , wish_color);
 		}
 	}
 	
