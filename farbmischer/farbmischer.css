@@ -1,0 +1,77 @@
+body { width: 600px }
+	#screen {
+		display: block; 
+		position: absolute; 
+		width: 100% ; 
+		height: 100%;
+	}
+	#float_welcome, #float_message {
+		display: block; 
+		background: #07f; 
+		color: white; 
+		font-size: 20px; 
+		text-align: center;
+		position: absolute; 
+		left: 50px; 
+		top: 100px; 
+		width: 500px; 
+		padding: 5px; 
+		border-radius: 5px;
+	}
+	.but_mode {
+		width: 280px;
+		height: 40px;
+		margin: 8px;
+		padding: 0px;
+		color: white;
+		background-color: #07f;
+		border-width: 2px;
+		border-radius: 3px;
+		border-style: solid;
+		border-color: #007;
+	}
+	
+	.but_mode.active {
+		color: #07f;
+		background-color: white;
+	}
+    #stage { 
+		width: 600px; 
+		height: 600px; 
+		margin: auto; 
+		border: 1px solid black; 
+		background-image: url("bg.jpg");
+	}
+	#controls, canvas { 
+		display: block; 
+	}
+    #controls {
+		width: 400px; 
+		margin: auto;
+	}
+    .control_color { 
+		display: inline; 
+		margin: auto;
+		width: 360px; 
+		height: 40px; 
+		font-size: 20px; 
+		font-weight: " bold";
+	}
+    #col_red { background: rgb(255,0,0); }
+    #col_blue { background: rgb(0,0,255); }
+    #col_green { background: rgb(0,255,0); }
+    .col_box { 
+		width: 30px; 
+		height: 30px; display: inline-block; 
+	}
+	#status {
+		background: #07f; 
+		color: white; 
+		padding: 5px; 
+		border-radius: 5px;
+	}
+	#level_bereich, #beschreibung {
+		width: 250px; 
+		display: inline-block; 
+		font-size: 20px;
+	}
