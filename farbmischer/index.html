@@ -3,7 +3,6 @@
 <head>
 <link rel="stylesheet" href="./farbmischer.css">
 <!--TODO
-Game und Free Mode
 bessere Erklärung 
 fit to viewport
 Scrolling unterdrücken
@@ -11,21 +10,18 @@ Animation bei neuem Level
 -->
 </head>
 <body>
-	<div id="float_welcome">
-		Tanja, die Bühnentechnikerin, ist leider krank im Bett, du musst ihren Job übernehmen! An drei Reglern kannst du die roten, grünen und blauen Scheinwerfer einzeln ansteuern. 
-		In der Mitte siehst du die gemischte Farbe, der kleine Kreis ganz in der Mitte zeigt die gewünschte Mischfarbe an. Es fängt ganz leicht an... 
-		<br>
-		Tippen um loszulegen!
+<!--	<div id="float_welcome">
+		
 	</div>
-	<div id="float_message">
+-->	<div id="float_message">
 		
 	</div>
 	<div id="screen" onclick="hide_screen()" ontouchstart="hide_screen()">
 	</div>
 	
 	<div id="main">
-		<button id="but_free" class="but_mode active" 	onclick="setmode('free');">Freies Mischen</button>
-		<button id="but_play" class="but_mode"			onclick="setmode('play');">Spiel!</button><br>
+		<button id="but_free" class="but_mode active" 	onclick="set_mode('free');">Freies Mischen</button>
+		<button id="but_play" class="but_mode"			onclick="set_mode('play');">Spiel!</button><br>
 		<canvas id="stage" width="400" height="400"></canvas>
 		
 	</div> 

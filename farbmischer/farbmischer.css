@@ -1,6 +1,6 @@
 body { width: 600px }
 	#screen {
-		display: block; 
+		display: none; 
 		position: absolute; 
 		width: 100% ; 
 		height: 100%;
@@ -71,7 +71,7 @@ body { width: 600px }
 		border-radius: 5px;
 	}
 	#level_bereich, #beschreibung {
-		width: 250px; 
+		width: 280px; 
 		display: inline-block; 
 		font-size: 20px;
 	}
