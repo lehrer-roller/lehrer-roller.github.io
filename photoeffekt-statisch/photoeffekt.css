@@ -1,0 +1,26 @@
+body { width: 600px }
+#screen {
+	display: none; 
+	position: absolute; 
+	width: 100% ; 
+	height: 100%;
+}
+#float_welcome, #float_message {
+	display: block; 
+	background: #07f; 
+	color: white; 
+	font-size: 20px; 
+	text-align: center;
+	position: absolute; 
+	left: 50px; 
+	top: 100px; 
+	width: 500px; 
+	padding: 5px; 
+	border-radius: 5px;
+}
+
+.color_button {
+	display: inline-block;
+}
+
+
