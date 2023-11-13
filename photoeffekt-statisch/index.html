@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<title> Simulation des Photoeffekts, statische aufgebaute Spannung</title>
+<link rel="stylesheet" href="./photoeffekt.css">
+
+</head>
+<body>	<div id="float_message">
+		
+	</div>
+	<div id="screen" onclick="hide_screen()" ontouchstart="hide_screen()">
+	</div>
+	 <div id="controls">
+		<form> 
+			<input type="radio" name="radio_color" value="ir"  onchange="draw_experiment()"><div id="color_ir"  class="color_button">900 nm (IR)</div></br>
+			<input type="radio" name="radio_color" value="red" onchange="draw_experiment()" checked="checked"><div id="color_red" class="color_button">620 nm</div></br>
+			<input type="radio" name="radio_color" value="yel" onchange="draw_experiment()"><div id="color_yel" class="color_button">570 nm</div></br>
+			<input type="radio" name="radio_color" value="gre" onchange="draw_experiment()"><div id="color_gre" class="color_button">540 nm</div></br>
+			<input type="radio" name="radio_color" value="blu" onchange="draw_experiment()"><div id="color_blu" class="color_button">460 nm</div></br>
+			<input type="radio" name="radio_color" value="vio" onchange="draw_experiment()"><div id="color_vio" class="color_button">400 nm</div></br>
+			<input type="radio" name="radio_color" value="uv"  onchange="draw_experiment()"><div id="color_uv"  class="color_button">300 nm (UV)</div></br>
+			
+			<input type="range" id=intensity min="0" max="100" step="5" val="0" onchange="draw_experiment()">
+		</form>
+	</div>
+	
+	<div id="main">
+		<canvas id="stage" width="400" height="400"></canvas>
+		
+	</div> 
+
+
+	<div id="status">
+	</div>
+	 
+  <script src='../jquery-3.5.1.min.js'></script>
+  <script src='./photoeffekt-statisch	.js'></script>
+</body>
+</html>
