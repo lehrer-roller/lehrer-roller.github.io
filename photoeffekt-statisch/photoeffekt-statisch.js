@@ -22,7 +22,7 @@ const wavelengths = {
 	gre: 540e-9,
 	blu: 460e-9,
 	vio: 400e-9,
-	uv : 300e-9
+	uv : 270e-9
 }
 
 const h = 4.136e-15 // Planck's constant in eVs
