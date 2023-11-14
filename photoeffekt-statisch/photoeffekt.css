@@ -4,6 +4,8 @@ body { width: 600px }
 	position: absolute; 
 	width: 100% ; 
 	height: 100%;
+	background: rgba(200,200,200,0.8);
+	cursor: pointer;
 }
 #float_welcome, #float_message {
 	display: block; 
@@ -17,6 +19,7 @@ body { width: 600px }
 	width: 500px; 
 	padding: 5px; 
 	border-radius: 5px;
+	cursor: pointer;
 }
 
 .color_button { 
