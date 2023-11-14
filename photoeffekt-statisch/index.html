@@ -12,20 +12,20 @@
 	</div>
 	 <div id="controls">
 		<form> 
-			<input type="radio" name="radio_color" value="ir"  onchange="draw_experiment()"><div id="color_ir"  class="color_button">900 nm (IR)</div></br>
-			<input type="radio" name="radio_color" value="red" onchange="draw_experiment()" checked="checked"><div id="color_red" class="color_button">620 nm</div></br>
-			<input type="radio" name="radio_color" value="yel" onchange="draw_experiment()"><div id="color_yel" class="color_button">570 nm</div></br>
-			<input type="radio" name="radio_color" value="gre" onchange="draw_experiment()"><div id="color_gre" class="color_button">540 nm</div></br>
-			<input type="radio" name="radio_color" value="blu" onchange="draw_experiment()"><div id="color_blu" class="color_button">460 nm</div></br>
-			<input type="radio" name="radio_color" value="vio" onchange="draw_experiment()"><div id="color_vio" class="color_button">400 nm</div></br>
-			<input type="radio" name="radio_color" value="uv"  onchange="draw_experiment()"><div id="color_uv"  class="color_button">300 nm (UV)</div></br>
-			
+			<input type="radio" id="radio_ir"  name="radio_color" value="ir"  onchange="draw_experiment()"><label id="color_ir"  for="radio_ir"  class="color_button">900 nm (IR)</label>
+			<input type="radio" id="radio_red" name="radio_color" value="red" onchange="draw_experiment()" checked="checked"><label id="color_red" for="radio_red" class="color_button">620 nm     </label>
+			<input type="radio" id="radio_yel" name="radio_color" value="yel" onchange="draw_experiment()"><label id="color_yel" for="radio_yel" class="color_button">570 nm     </label>
+			<input type="radio" id="radio_gre" name="radio_color" value="gre" onchange="draw_experiment()"><label id="color_gre" for="radio_gre" class="color_button">540 nm     </label>
+			<input type="radio" id="radio_blu" name="radio_color" value="blu" onchange="draw_experiment()"><label id="color_blu" for="radio_blu" class="color_button">460 nm     </label>
+			<input type="radio" id="radio_vio" name="radio_color" value="vio" onchange="draw_experiment()"><label id="color_vio" for="radio_vio" class="color_button">400 nm     </label>
+			<input type="radio" id="radio_uv"  name="radio_color" value="uv"  onchange="draw_experiment()"><label id="color_uv"  for="radio_uv"  class="color_button">300 nm (UV)</label>
+			<br/>
 			<input type="range" id=intensity min="0" max="100" step="5" val="0" onchange="draw_experiment()">
 		</form>
 	</div>
 	
 	<div id="main">
-		<canvas id="stage" width="400" height="400"></canvas>
+		<canvas id="stage" width="600" height="600"></canvas>
 		
 	</div> 
 

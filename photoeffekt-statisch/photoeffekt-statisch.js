@@ -2,13 +2,13 @@ var stage = document.querySelector('#stage');
 var ctx = stage.getContext('2d');
 
 const colors = {
-	ir : [150, 150, 150],
+	ir : [200, 150, 150],
 	red: [255, 0, 0],
 	yel: [255, 255, 0],
 	gre: [0, 255, 0],
 	blu: [0, 0, 255],
 	vio: [150, 120, 255],
-	uv : [150, 150, 150]
+	uv : [150, 150, 200]
 }
 
 function set_color() {
