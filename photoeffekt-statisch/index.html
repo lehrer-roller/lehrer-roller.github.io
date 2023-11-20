@@ -18,7 +18,7 @@
 			<canvas id="stage" width="600" height="600"></canvas>
 			
 		</div> 
-		<form id="controls"> <label>Farbe:</label>
+		<form id="controls"> <label class="label_farbe">Farbe:</label>
 				<input type="radio" id="radio_ir"  name="radio_color" value="ir"  onchange="start_experiment()"><label id="color_ir"  for="radio_ir"  class="color_button">900 nm (IR)</label>
 				<input type="radio" id="radio_red" name="radio_color" value="red" onchange="start_experiment()" checked="checked"><label id="color_red" for="radio_red" class="color_button">620 nm     </label>
 				<input type="radio" id="radio_yel" name="radio_color" value="yel" onchange="start_experiment()"><label id="color_yel" for="radio_yel" class="color_button">570 nm     </label>
@@ -31,11 +31,16 @@
 					<input type="range" id="intensity" min="0" max="100" step="25" val="0" onchange="start_experiment()"></input><br/>
 				<label class="label_input">Kathodenmaterial:</label>
 					<select id="select_cathode" onchange="start_experiment()">
-						<option value="1.93">Caesium (1,93eV)</option>
+<!--						<option value="1.93">Caesium (1,93eV)</option>
 						<option value="2.13">Rubidium (2,13eV)</option>
 						<option checked="checked" value="2.28">Natrium (2,28eV)</option>
 						<option value="3.20">Calcium (3,2eV)</option>
 						<option value="4.34">Zink (4,34eV)</option>
+-->						<option value="1.93">Caesium</option>
+						<option value="2.13">Rubidium</option>
+						<option checked="checked" value="2.28">Natrium</option>
+						<option value="3.20">Calcium</option>
+						<option value="4.34">Zink</option>
 					</select>
 			</form>
 		
