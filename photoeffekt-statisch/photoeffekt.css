@@ -112,7 +112,7 @@ input[type="radio"]:checked + label {
 #header{font-size: 15px;}
 
 #header, #footer {
-	width: calc(360px - 32px);
+	width: calc(100% - 32px);
 	font-size: 12px;
 	padding: 2px;
 }
@@ -152,7 +152,7 @@ label.label_input {
 		font-size: 15px;
 	}
 	#header, #footer {
-		width: calc(576px - 32px);
+		width: calc(100% - 32px);
 	}
 	#header {
 		font-size: 20px;
@@ -185,35 +185,35 @@ label.label_input {
 		font-size: 16px;
 		height: 25px;
 	}	
-	@media only screen and (min-width: 768px) and (min-height: 800px) {
+	@media only screen and (min-width: 768px) and (min-height: 935px) {
 		#float_message {
-			font-size: 18px;
+			font-size: 24px;
 		}
 		#header, #footer {
-			width: calc(768px - 32px);
+			width: calc(100% - 32px);
 		}
 		#main canvas {
-			width: 748px;
-			height: 748px;
+			width: 700px;
+			height: 700px;
 		}
 		#controls {
 			width: calc(768px - 20px);
 		}
 		input[type="radio"] + label {
-			font-size: 12px;
+			font-size: 20px;
 			width: 160px;
 			padding: 2px;
 		}
 		#select_cathode {
-			font-size: 14px;
-			height: 25px;
+			font-size: 20px;
+			height: 30px;
 		}
 		#intensity {
-			font-size: 14px;
+			font-size: 20px;
 			height: 25px;
 		}
 		label.label_input {
-			font-size: 16px;
+			font-size: 20px;
 			height: 25px;
 		}
 	}
@@ -272,7 +272,7 @@ label.label_input {
 	}
 
 	#header, #footer {
-		width: calc(450px - 32px);
+		width: calc(100% - 32px);
 	}
 	#header {
 		font-size: 12px;
@@ -314,10 +314,10 @@ label.label_input {
 	}
 	@media only screen and (min-height: 576px) and (min-width: 760px) {
 		#float_message {
-			font-size: 15px;
+			font-size: 20px;
 		}
 		#header, #footer {
-			width: calc(760px - 32px);
+			width: calc(100% - 32px);
 		}
 		#header {
 			font-size: 20px;
@@ -334,30 +334,34 @@ label.label_input {
 			width: 250px;
 		}
 		input[type="radio"] + label {
-			font-size: 14px;
+			font-size: 20px;
 			width: 160px;
 			padding: 2px;
 		}
 		#select_cathode {
-			font-size: 14px;
+			font-size: 20px;
 			height: 25px;
 			width: 160px;
 		}
 		#intensity {
-			font-size: 14px;
+			font-size: 20px;
 			height: 25px;
 			width: 160px;
 		}
+		label.label_farbe {
+			font-size: 20px;
+
+		}
 		label.label_input {
-			font-size: 16px;
+			font-size: 20px;
 			height: 25px;
 		}
 		@media only screen and (min-height: 768px) and (min-width: 960px) {
 			#float_message {
-				font-size: 18px;
+				font-size: 25px;
 			}
 			#header, #footer {
-				width: calc(960px - 32px);
+				width: calc(100% - 32px);
 			}
 			#header {
 				font-size: 20px;
@@ -367,8 +371,8 @@ label.label_input {
 				margin-top: 4px;
 			}
 			#main canvas {
-				width: 680px;
-				height: 680px;
+				width: 650px;
+				height: 650px;
 			}
 			#controls {
 				width: 250px;
@@ -380,20 +384,20 @@ label.label_input {
 				padding: 2px;
 			}
 			#select_cathode {
-				font-size: 14px;
-				height: 25px;
+				font-size: 20px;
+				height: 30px;
 				width: 160px;
 			}
 			#intensity {
-				font-size: 14px;
+				font-size: 20px;
 				height: 25px;
 				width: 160px;
 			}
 			label.label_farbe {
-				font-size: 16px;
+				font-size: 20px;
 			}
 			label.label_input {
-				font-size: 16px;
+				font-size: 20px;
 				height: 25px;
 			}
 		}
