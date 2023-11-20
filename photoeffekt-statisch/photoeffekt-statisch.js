@@ -39,22 +39,19 @@ function hide_welcome() {
 }
 
 function hide_screen() {
-	/*if (document.getElementById('float_message').style.display != "none"){
-		hide_message();
-	}*/
-	document.querySelector('#screen').style.display = "none";
+	document.querySelector('#screen_grid').style.display = "none";
 }
 
 function show_screen() {
-	document.querySelector('#screen').style.display = "block";
+	document.querySelector('#screen_grid').style.display = "grid";
 }
 
-function hide_message() {
+/*function hide_message() {
 	document.getElementById("float_message").style.display = "none";
 	start_experiment();
 	hide_screen();
 }
-
+*/
 function show_message(text) {
 	show_screen();
 	document.querySelector('#float_message').innerHTML = text;
