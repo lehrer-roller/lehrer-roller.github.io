@@ -224,6 +224,7 @@ label.label_input {
 		display: grid;
 		justify-items: center;
 		grid-template-columns: auto auto;
+		justify-content: center;
 	}
 
 	#header {
