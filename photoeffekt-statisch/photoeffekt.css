@@ -8,6 +8,8 @@ body {
  display: grid;
  justify-items: center;
  justify-content: center;
+ grid-template-rows: 45px auto 225px 30px;
+ height: calc(100vh - 16px);
 }
 
 #header {
@@ -87,6 +89,8 @@ body {
 	border-color: lightgrey;
 	cursor: pointer;
 	text-align: center;
+}
+.color_button p {
 }
 input[type="radio"]{
   visibility: hidden;
@@ -186,12 +190,18 @@ label.label_input {
 		font-size: 16px;
 		height: 25px;
 	}	
-	@media only screen and (min-width: 768px) and (min-height: 935px) {
+	@media only screen and (min-width: 768px) and (min-height: 1024px) {
 		#float_message {
 			font-size: 24px;
 		}
 		#header, #footer {
 			width: calc(100% - 32px);
+		}
+		#header {
+			font-size: 28px;
+		}
+		#footer {
+			font-size: 16px;
 		}
 		#main canvas {
 			width: 700px;
@@ -201,21 +211,21 @@ label.label_input {
 			width: calc(768px - 20px);
 		}
 		input[type="radio"] + label {
-			font-size: 20px;
+			font-size: 24px;
 			width: 160px;
-			padding: 2px;
+			padding: 16px 0px;
 		}
 		#select_cathode {
 			font-size: 20px;
 			height: 30px;
 		}
 		#intensity {
-			font-size: 20px;
-			height: 25px;
+			font-size: 24px;
+			height: 30px;
 		}
-		label.label_input {
-			font-size: 20px;
-			height: 25px;
+		label.label_input, label.label_farbe{
+			font-size: 24px;
+			height: 30px;
 		}
 	}
 }
