@@ -8,7 +8,6 @@ body {
  display: grid;
  justify-items: center;
  justify-content: center;
- grid-template-rows: 45px auto 225px 30px;
  height: calc(100vh - 16px);
 }
 
@@ -190,7 +189,10 @@ label.label_input {
 		font-size: 16px;
 		height: 25px;
 	}	
-	@media only screen and (min-width: 768px) and (min-height: 1024px) {
+	@media only screen and (min-width: 768px) and (min-height: 900px) {
+		#main_grid {
+			 grid-template-rows: 45px auto 225px 30px;
+		}
 		#float_message {
 			font-size: 24px;
 		}
@@ -204,8 +206,8 @@ label.label_input {
 			font-size: 16px;
 		}
 		#main canvas {
-			width: 700px;
-			height: 700px;
+			width: 600px;
+			height: 600px;
 		}
 		#controls {
 			width: calc(768px - 20px);
